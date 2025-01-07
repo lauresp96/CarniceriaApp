@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pedido Confirmado</title>
+</head>
+<body>
+<h1>Pedido Confirmado</h1>
+<p>Tu pedido se ha procesado con éxito.</p>
+
+<!-- Botón para descargar el PDF -->
+<a href="/pedido/pdf" target="_blank">
+    <button>Imprimir Pedido</button>
+</a>
+
+<a th:href="@{/productos}">Volver a la tienda</a>
+</body>
+</html>

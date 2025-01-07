@@ -47,7 +47,7 @@ public class Admin_UsuarioController {
         return "admin/usuario-form";
     }
 
-    @PostMapping("/editar{id}")
+    @PostMapping("/editar/{id}")
     public String guardarEdicionUsuario(@PathVariable Long id, @ModelAttribute Usuario usuario) throws Exception {
         usuario.setId(id);
         Usuario usuarioEditado = usuarioService.editar(id, usuario);

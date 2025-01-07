@@ -1,27 +1,274 @@
-        body {
-            font-family: Arial, sans-serif;
+body {
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    background-color: #ff6f61;
+    color: white;
+    padding: 15px 0;
+}
+
+.left-header {
+    display: flex;
+    align-items: center;
+}
+
+.left-header .email {
+    color: white;
+    font-size: 0.9rem;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.header {
+    background-color: #6c757d;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+h2, h3 {
+    margin-top: 30px;
+    color: #333;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+/* Botones personalizados */
+.btn-custom {
+    background-color: #6c757d;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-custom:hover {
+    background-color: #5a6268;
+}
+
+/* Iconos */
+.fas {
+    margin-right: 8px;
+}
+
+/* Tabla de productos/usuarios */
+.table {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+.table th {
+    background-color: #6c757d;
+    color: white;
+}
+
+.table .btn {
+    padding: 5px 15px;
+}
+
+/* Formularios */
+.form-label {
+    font-weight: bold;
+}
+
+input, select, button {
+    border-radius: 5px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
+    margin-bottom: 15px;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 15px;
+}
+
+footer p {
+    margin: 0;
+}
+
+ .admin-panel {
+          margin-top: 50px;
+          text-align: center;
         }
-        .header {
-            background-color: #ff6f61;
-            color: white;
-            padding: 20px 0;
+ .admin-panel h1 {
+          font-size: 3rem;
+          margin-bottom: 30px;
+          color: #333;
         }
-        .header h1 {
-            margin: 0;
-            font-size: 2.5rem;
+
+        .admin-panel .btn {
+          font-size: 1.2rem;
+          padding: 20px 40px;
+          margin: 10px;
+          width: 250px;
+          transition: all 0.3s ease;
         }
-        .footer {
-            background-color: #333;
-            color: white;
-            padding: 15px 0;
+
+        .admin-panel .btn:hover {
+          transform: translateY(-5px);
         }
-        .footer p {
-            margin: 0;
-            font-size: 0.9rem;
+
+        .admin-panel .btn-primary {
+          background-color: #007bff;
+          border-color: #007bff;
         }
-        .hero-image {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
+
+        .admin-panel .btn-primary:hover {
+          background-color: #0056b3;
+          border-color: #0056b3;
         }
+
+        .admin-panel .btn-success {
+          background-color: #28a745;
+          border-color: #28a745;
+        }
+
+        .admin-panel .btn-success:hover {
+          background-color: #218838;
+          border-color: #1e7e34;
+        }
+
+        .admin-panel .btn-danger {
+          background-color: #dc3545;
+          border-color: #dc3545;
+        }
+
+        .admin-panel .btn-danger:hover {
+          background-color: #c82333;
+          border-color: #bd2130;
+        }
+
+        footer {
+          margin-top: 50px;
+          background-color: #343a40;
+          color: #fff;
+          text-align: center;
+          padding: 10px;
+        }
+            /* Estilo para el navbar */
+                .navbar {
+                    background-color: #343a40;
+                }
+
+                .navbar a {
+                    color: #fff !important;
+                }
+
+                .navbar-brand {
+                    font-weight: bold;
+                }
+
+                /* Fondo y márgenes */
+                body {
+                    background-color: #f8f9fa;
+                    font-family: 'Arial', sans-serif;
+                }
+
+                .admin-panel {
+                    margin-top: 50px;
+                }
+
+                .admin-panel .btn {
+                    font-size: 1.2rem;
+                    padding: 20px 40px;
+                    margin: 10px;
+                    width: 250px;
+                    transition: all 0.3s ease;
+                }
+
+                .admin-panel .btn:hover {
+                    transform: translateY(-5px);
+                }
+
+                .admin-panel .btn-primary {
+                    background-color: #007bff;
+                    border-color: #007bff;
+                }
+
+                .admin-panel .btn-primary:hover {
+                    background-color: #0056b3;
+                    border-color: #0056b3;
+                }
+
+                .admin-panel .btn-success {
+                    background-color: #28a745;
+                    border-color: #28a745;
+                }
+
+                .admin-panel .btn-success:hover {
+                    background-color: #218838;
+                    border-color: #1e7e34;
+                }
+
+                .admin-panel .btn-danger {
+                    background-color: #dc3545;
+                    border-color: #dc3545;
+                }
+
+                .admin-panel .btn-danger:hover {
+                    background-color: #c82333;
+                    border-color: #bd2130;
+                }
+
+                footer {
+                    margin-top: 50px;
+                    background-color: #343a40;
+                    color: #fff;
+                    text-align: center;
+                    padding: 10px;
+                }
+
+                .container {
+                    max-width: 1200px;
+                }

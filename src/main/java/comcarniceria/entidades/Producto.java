@@ -27,11 +27,15 @@ public class Producto {
     private int cantiadStock;
     private String imagen;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @ManyToMany(mappedBy = "productos")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "proveedor_id")
+    private Proveedor proveedor;
+
+    @ManyToMany(mappedBy = "productos", cascade = CascadeType.ALL)
     private List<Pedido> pedidos;
 
     public Long getId() {
@@ -96,5 +100,13 @@ public class Producto {
 
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 }
