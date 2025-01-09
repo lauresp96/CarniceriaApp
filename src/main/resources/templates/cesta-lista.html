@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cestas</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Cestas</h1>
+
+<!-- Si no hay cestas, mostramos el mensaje -->
+<p th:if="${mensaje}" th:text="${mensaje}"></p>
+
+<!-- Si hay cestas, las listamos -->
+<div th:if="${cestas}">
+  <ul>
+    <li th:each="cesta : ${cestas}" th:text="${cesta.nombre}"></li>
+  </ul>
+</div>
+
+<!-- Botón para crear una nueva cesta -->
+<a href="/cesta/crear">Crear una nueva cesta</a>
+</body>
+</html>

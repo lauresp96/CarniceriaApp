@@ -27,11 +27,11 @@ public class Producto {
     private int cantiadStock;
     private String imagen;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
 

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,6 +24,9 @@ public class Pedido {
     private LocalDateTime fecha;
     private int total;
 
+    @Column(nullable = false)
+    private boolean completado = false;
+
     @ManyToOne
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
@@ -33,13 +35,12 @@ public class Pedido {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "detalle_pedido",
             joinColumns = @JoinColumn(name = "pedido_id"),
             inverseJoinColumns = @JoinColumn(name = "producto_id")
     )
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Producto> productos;
 
     @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
@@ -86,7 +87,7 @@ public class Pedido {
         this.proveedor = proveedor;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
@@ -101,4 +102,13 @@ public class Pedido {
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
+
+    public boolean isCompletado() {
+        return completado;
+    }
+
+    public void setCompletado(boolean completado) {
+        this.completado = completado;
+    }
+
 }

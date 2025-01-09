@@ -37,6 +37,12 @@ public class DataInitCategoria implements CommandLineRunner {
             categoria4.setNombre("Embutidos");
             categoria4.setDescripcion("Embutidos y salchichones.");
             categoriaService.guardar(categoria4);
+
+
+            Categoria categoria5 = new Categoria();
+            categoria4.setNombre("Ternera");
+            categoria4.setDescripcion("Carne de ternera.");
+            categoriaService.guardar(categoria4);
         }
     }
 }

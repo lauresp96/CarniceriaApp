@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cesta</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Crear una Cesta</h1>
+
+<!-- Formulario para crear una nueva cesta -->
+<form action="/cesta/guardar" method="post">
+  <label for="nombreUsuario">Nombre del Usuario:</label>
+  <input type="text" id="nombreUsuario" name="nombreUsuario" required>
+
+  <button type="submit">Crear Cesta</button>
+</form>
+
+<div>
+  <!-- Si hay un mensaje, lo mostramos -->
+  <p th:if="${mensaje}" th:text="${mensaje}"></p>
+</div>
+</body>
+</html>

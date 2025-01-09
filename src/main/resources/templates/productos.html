@@ -1,55 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Productos</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/static/css/styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/styles.css" rel="stylesheet">
 </head>
 <body>
 <!-- Header -->
 <header class="bg-dark text-white text-center py-3">
-  <h1>Productos Disponibles</h1>
+    <h1>Productos Disponibles</h1>
 </header>
 
 <!-- Main Content -->
 <main class="container my-4">
-  <!-- Product List -->
-  <div class="row">
-    <div th:each="producto : ${productos}" class="col-md-4 mb-4">
-      <div class="card h-100">
-        <!-- Product Image -->
-        <img th:src="@{${producto.imagen}}" class="card-img-top" alt="Imagen de Producto" style="max-height: 200px; object-fit: cover;">
-
-        <!-- Product Details -->
-        <div class="card-body">
-          <h5 class="card-title" th:text="${producto.nombre}">Nombre del Producto</h5>
-          <p class="card-text text-muted" th:text="${producto.categoria.nombre}">Categoría</p>
-          <p class="card-text" th:text="${producto.descripcion}">Descripción del Producto</p>
-          <p class="card-text" th:text="${producto.proveedor.nombre}">Marca</p>
-          <p class="card-text text-success fw-bold" th:text="${#numbers.formatDecimal(producto.precio, 2, 2) + ' €'}">Precio</p>
-          <p class="card-text text-secondary">Stock: <span th:text="${producto.cantiadStock}"></span></p>
-        </div>
-
-        <!-- Add to Cart Button -->
-        <div class="card-footer text-center">
-          <!-- Form for Adding Product to Cart -->
-          <form th:action="@{/carrito/agregar}" method="post">
-            <input type="hidden" name="productoId" th:value="${producto.id}">
-            <button type="submit" class="btn btn-primary">Añadir al Carrito</button>
-          </form>
-        </div>
-      </div>
+    <div th:if="${success != null}" class="alert alert-success">
+        <span th:text="${success}">Producto agregado con éxito.</span>
     </div>
-  </div>
+
+    <div th:if="${error != null}" class="alert alert-danger">
+        <span th:text="${error}">Error en la operación.</span>
+    </div>
+
+    <!-- Product List -->
+    <div class="row">
+        <div th:each="producto : ${productos}" class="col-md-4 mb-4">
+            <div class="card h-100">
+                <!-- Product Image -->
+                <img th:src="@{${producto.imagen}}" class="card-img-top" alt="Imagen de Producto"
+                     style="max-height: 200px; object-fit: cover;">
+
+                <!-- Product Details -->
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${producto.nombre}">Nombre del Producto</h5>
+                    <p class="card-text text-muted" th:text="${producto.categoria.nombre}">Categoría</p>
+                    <p class="card-text" th:text="${producto.descripcion}">Descripción del Producto</p>
+                    <p class="card-text" th:text="${producto.proveedor.nombre}">Marca</p>
+                    <p class="card-text text-success fw-bold"
+                       th:text="${#numbers.formatDecimal(producto.precio, 2, 2) + ' €'}">Precio</p>
+                    <p class="card-text text-secondary">Stock: <span th:text="${producto.cantiadStock}"></span></p>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <div class="card-footer text-center">
+                    <!-- Form for Adding Product to Cart -->
+                    <form th:action="@{/agregarProducto}" method="post">
+                        <input type="hidden" name="productoId" th:value="${producto.id}">
+                        <input type="number" name="cantidad" min="1" max="10" value="1" class="form-control mb-2"
+                               required>
+                        <button type="button" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#crearCestaModal"
+                                data-producto-id="{{producto.id}}" data-producto-nombre="{{producto.nombre}}">
+                            Añadir al Carrito
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
+
+<!-- Modal para Crear Cesta -->
+<div class="modal fade" id="crearCestaModal" tabindex="-1" aria-labelledby="crearCestaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="crearCestaModalLabel">Crear Cesta y Añadir Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para crear cesta -->
+                <form id="formCrearCesta" action="/cesta/guardar" method="post">
+                    <div class="mb-3">
+                        <label for="nombreUsuario" class="form-label">Nombre del Usuario</label>
+                        <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantidadProducto" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" id="cantidadProducto" name="cantidad" min="1" max="10"
+                               value="1" required>
+                    </div>
+                    <input type="hidden" name="productoId" id="productoId">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Crear Cesta y Añadir Producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer class="bg-dark text-white text-center py-3">
-  <p>&copy; 2025 Carnicería de Prueba. Todos los derechos reservados.</p>
+    <p>&copy; 2025 Carnicería de Prueba. Todos los derechos reservados.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    var crearCestaModal = document.getElementById('crearCestaModal');
+ crearCestaModal.addEventListener('show.bs.modal', function (event) {
+     var button = event.relatedTarget; // Este es el botón que abrió el modal
+     var productoId = button.getAttribute('data-producto-id');
+     var productoNombre = button.getAttribute('data-producto-nombre');
+
+     // Asignar el producto ID y nombre al formulario en el modal
+     var modalProductoId = document.getElementById('productoId');
+     var modalCantidad = document.getElementById('cantidadProducto');
+
+     // Asignar valores al formulario del modal
+     modalProductoId.value = productoId;  // Este valor es el ID del producto
+     modalCantidad.value = 1; // Establece cantidad por defecto
+ });
+</script>
 </body>
 </html>
